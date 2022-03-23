@@ -1,0 +1,106 @@
+.btn {
+  &,
+  &:link,
+  &:visited {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    /* TRANSITION всегда пишется на изначальном состоянии элемента, даже, если мы анимируем hover, active итд */
+    transition: all 0.2s;
+    /* Ставим position:relativе, для того, чтобы абсолютно спозиционировать элемент btn::after */
+    position: relative;
+    font-size: $default-font-size;
+
+    // Change for the <button> element
+    border: none;
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    /* Применяем эффекты к псевдоэлементу AFTER, только при наведении мышки на кнопку(BTN:HOVER)  */
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active,
+  &:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    /* Так как псевдоэлемент AFTER является CHILD элементом BTN, то мы хотим чтобы его размеры были как у родительского элемента, поэтому HEIGHT100% и WIDTH100% */
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Изначальное состояние для .btn:hover::after */
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    /* Включает анимацию для элемента (название анимации_длительность_вид анимации_задержка(через какое время начнет работать анимация) */
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /* Applies the styles of 0% (look at @keyframes)
+         (opacity: 0;
+          transform: translateY(30px);)
+        before the animation starts */
+    animation-fill-mode: backwards;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+    transform: translateY(0);
+  }
+}
