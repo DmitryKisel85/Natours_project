@@ -1,3 +1,3 @@
 # Natours Project
 
-HTML, CSS, pure JS, Gulp
+HTML, CSS (SCSS), pure JS, Gulp
